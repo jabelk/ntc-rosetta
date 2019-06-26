@@ -5,8 +5,8 @@ description = "The missing bridge between industry standard CLIs and YANG"
 authors = ["David Barroso <dbarrosop@dravetech.com>"]
 license = "Apache-2.0"
 packages = [
-    { include = "ntc_rosetta" },
-    { include = "ntc_rosetta/yang/openconfig" },
+    { include = "ntc_rosetta/" },
+    { include = "ntc_rosetta/yang/openconfig/" },
 ]
 
 [tool.poetry.scripts]
