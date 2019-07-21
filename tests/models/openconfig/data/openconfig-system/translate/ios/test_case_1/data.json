@@ -1,99 +1,80 @@
 {
-  "openconfig-interfaces:interfaces": {
-    "interface": [
-      {
-        "name": "FastEthernet1",
-        "config": {
-          "name": "FastEthernet1",
-          "type": "iana-if-type:ethernetCsmacd",
-          "description": "This is Fa1",
-          "enabled": false
-        },
-        "subinterfaces": {
-          "subinterface": [
-            {
-              "index": 1,
-              "config": {
-                "index": 1,
-                "description": "This is Fa1.1"
-              }
-            },
-            {
-              "index": 2,
-              "config": {
-                "index": 2,
-                "description": "This is Fa1.2"
-              }
-            }
-          ]
+  "openconfig-system:system": 
+  {
+"config": 
+{
+  "hostname": "csr1",
+  "domain-name": "networktocode.com"
+},
+"dns": 
+{
+  "servers": 
+  {
+     "server": 
+     [            
+        {
+           "address": "10.1.1.1",
+           "config": 
+           {
+              "address": "10.1.1.1",
+              "port": "54"
+           }
+        },            
+        {
+           "address": "10.3.3.3",
+           "config": 
+           {
+              "address": "10.3.3.3",
+              "port": "54"
+           }
         }
-      },
-      {
-        "name": "FastEthernet3",
-        "config": {
-          "name": "FastEthernet3",
-          "type": "iana-if-type:ethernetCsmacd",
-          "description": "This is Fa3",
-          "enabled": true
-        },
-        "openconfig-if-ethernet:ethernet": {
-          "openconfig-vlan:switched-vlan": {
-            "config": {
-              "interface-mode": "ACCESS",
-              "access-vlan": 10
-            }
-          }
-        }
-      },
-      {
-        "name": "FastEthernet4",
-        "config": {
-          "name": "FastEthernet4",
-          "type": "iana-if-type:ethernetCsmacd",
-          "enabled": false
-        },
-        "openconfig-if-ethernet:ethernet": {
-          "openconfig-vlan:switched-vlan": {
-            "config": {
-              "interface-mode": "TRUNK",
-              "trunk-vlans": [
-                10,
-                20
-              ]
-            }
-          }
-        }
-      }
-    ]
-  },
-  "openconfig-network-instance:network-instances": {
-    "network-instance": [
-      {
-        "name": "default",
-        "config": {
-          "name": "default"
-        },
-        "vlans": {
-          "vlan": [
-            {
-              "vlan-id": 10,
-              "config": {
-                "vlan-id": 10,
-                "name": "prod",
-                "status": "ACTIVE"
-              }
-            },
-            {
-              "vlan-id": 20,
-              "config": {
-                "vlan-id": 20,
-                "name": "dev",
-                "status": "SUSPENDED"
-              }
-            }
-          ]
-        }
-      }
-    ]
+     ]
   }
+},
+"ntp": 
+{
+  "config": 
+  {
+     "enabled": true,
+     "ntp-source-address": "192.168.2.2",
+     "enable-ntp-auth": true
+  },
+  "servers": 
+  {
+     "server": 
+     [            
+        {
+           "address": "10.5.5.5",
+           "config": 
+           {
+              "address": "10.5.5.5",
+              "port": "60",
+              "version": "4",
+              "association-type": "SERVER"
+           }
+        },            
+        {
+           "address": "10.4.4.4",
+           "config": 
+           {
+              "address": "10.4.4.4",
+              "port": "60",
+              "version": "4",
+              "association-type": "SERVER"
+           }
+        }
+     ]
+  }
+},
+"ssh-server": 
+{
+  "config": 
+  {
+     "enable": true,
+     "protocol-version": "V1",
+     "timeout": "100"
+  }
+}
+}
+
 }
