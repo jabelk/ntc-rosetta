@@ -18,10 +18,12 @@ OPENCONFIG_PATH = [
     BASEPATH.joinpath("openconfig/release/models/network-instance"),
     BASEPATH.joinpath("openconfig/release/models/local-routing"),
     BASEPATH.joinpath("openconfig/release/models/ospf"),
+    BASEPATH.joinpath("openconfig/release/models/platform"),
     BASEPATH.joinpath("openconfig/release/models/policy"),
     BASEPATH.joinpath("openconfig/release/models/policy-forwarding"),
     BASEPATH.joinpath("openconfig/release/models/rib"),
     BASEPATH.joinpath("openconfig/release/models/segment-routing"),
+    BASEPATH.joinpath("openconfig/release/models/system"),
     BASEPATH.joinpath("openconfig/release/models/types"),
     BASEPATH.joinpath("openconfig/release/models/vlan"),
 ]
