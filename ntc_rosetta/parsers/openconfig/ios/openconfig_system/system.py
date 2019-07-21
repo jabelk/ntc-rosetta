@@ -187,80 +187,80 @@ class TelnetServer(Parser):
         path = "/openconfig-system:system/telnet-server"
 
 
-class AaaAuthenticationUserConfig(Parser):
-    class Yangify(ParserData):
-        path = "/openconfig-system:system/aaa/authentication/users/user/config"
+# class AaaAuthenticationUserConfig(Parser):
+#     class Yangify(ParserData):
+#         path = "/openconfig-system:system/aaa/authentication/users/user/config"
 
-    def username(self) -> str:
-        return str(self.yy.key)
+#     def username(self) -> str:
+#         return str(self.yy.key)
 
-    def role(self) -> str:
-        text = jh.query('"#text"', self.yy.native)
+#     def role(self) -> str:
+#         text = jh.query('"#text"', self.yy.native)
 
-        role_RE = "privilege\s(.*)(?:\ssecret|\spassword)"
-        result = re.match(role_RE, text)
+#         role_RE = "privilege\s(.*)(?:\ssecret|\spassword)"
+#         result = re.match(role_RE, text)
 
-        if result:
-            return result[1]
-        return None
+#         if result:
+#             return result[1]
+#         return None
 
-    def password(self) -> str:
-        text = jh.query('"#text"', self.yy.native)
-        password_RE = ".*password\s(.*)"
-        result = re.match(password_RE, text)
+#     def password(self) -> str:
+#         text = jh.query('"#text"', self.yy.native)
+#         password_RE = ".*password\s(.*)"
+#         result = re.match(password_RE, text)
 
-        if result:
-            return result[1]
-        return None
+#         if result:
+#             return result[1]
+#         return None
 
-    def password_hashed(self) -> str:
-        text = jh.query('"#text"', self.yy.native)
-        password_RE = ".*secret\s(.*)"
-        result = re.match(password_RE, text)
+#     def password_hashed(self) -> str:
+#         text = jh.query('"#text"', self.yy.native)
+#         password_RE = ".*secret\s(.*)"
+#         result = re.match(password_RE, text)
 
-        if result:
-            return result[1]
-        return None
+#         if result:
+#             return result[1]
+#         return None
 
-    def ssh_key(self) -> str:
-        return None
-
-
-class AaaAuthenticationUser(Parser):
-    config = AaaAuthenticationUserConfig
-
-    class Yangify(ParserData):
-        path = "/openconfig-system:system/aaa/authentication/users/user"
-
-        def extract_elements(self) -> Iterator[Tuple[str, Dict[str, Any]]]:
-            for k, v in self.native["username"].items():
-                if k == "#text":
-                    continue
-                yield k, v
-
-    def username(self) -> str:
-        return str(self.yy.key)
+#     def ssh_key(self) -> str:
+#         return None
 
 
-class AaaAuthenticationUsers(Parser):
-    user = AaaAuthenticationUser
+# class AaaAuthenticationUser(Parser):
+#     config = AaaAuthenticationUserConfig
 
-    class Yangify(ParserData):
-        path = "/openconfig-system:system/aaa/authentication/users"
+#     class Yangify(ParserData):
+#         path = "/openconfig-system:system/aaa/authentication/users/user"
+
+#         def extract_elements(self) -> Iterator[Tuple[str, Dict[str, Any]]]:
+#             for k, v in self.native["username"].items():
+#                 if k == "#text":
+#                     continue
+#                 yield k, v
+
+#     def username(self) -> str:
+#         return str(self.yy.key)
 
 
-class AaaAuthentication(Parser):
-    users = AaaAuthenticationUsers
+# class AaaAuthenticationUsers(Parser):
+#     user = AaaAuthenticationUser
 
-    class Yangify(ParserData):
-        path = "/openconfig-system:system/aaa/authentication"
+#     class Yangify(ParserData):
+#         path = "/openconfig-system:system/aaa/authentication/users"
 
 
-class Aaa(Parser):
-    authentication = AaaAuthentication
+# class AaaAuthentication(Parser):
+#     users = AaaAuthenticationUsers
 
-    class Yangify(ParserData):
-        path = "/openconfig-system:system/aaa"
+#     class Yangify(ParserData):
+#         path = "/openconfig-system:system/aaa/authentication"
+
+
+# class Aaa(Parser):
+#     authentication = AaaAuthentication
+
+#     class Yangify(ParserData):
+#         path = "/openconfig-system:system/aaa"
 
 
 class SystemConfig(Parser):
@@ -297,7 +297,7 @@ class System(Parser):
     ntp = Ntp
     ssh_server = SshServer
     telnet_server = TelnetServer
-    aaa = Aaa
+    # aaa = Aaa
 
     class Yangify(ParserData):
         path = "/openconfig-system:system"

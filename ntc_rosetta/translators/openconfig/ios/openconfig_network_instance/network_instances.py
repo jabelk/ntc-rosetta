@@ -20,7 +20,7 @@ class NetworkInstance(Translator):
 
         def pre_process(self) -> None:
             if self.key == "default":
-                pass
+                return
             if self.replace:
                 self.root_result[f"default vrf {self.key}"] = []
             path = f"vrf {self.key}"
